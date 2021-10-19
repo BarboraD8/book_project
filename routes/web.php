@@ -23,3 +23,8 @@ Route::get('/books', 'App\Http\Controllers\BookController@index');
 Route::get('/books/create', 'App\Http\Controllers\BookController@create');
 Route::post('/books', 'App\Http\Controllers\BookController@store');
 Route::get('/books/{id}', 'App\Http\Controllers\BookController@show');
+
+Route::get('/authors', 'App\Http\Controllers\AuthorController@index');
+Route::get('/authors/create', 'App\Http\Controllers\AuthorController@create');
+Route::post('/authors', 'App\Http\Controllers\AuthorController@store');
+Route::get('/authors/{id}', 'App\Http\Controllers\AuthorController@show');

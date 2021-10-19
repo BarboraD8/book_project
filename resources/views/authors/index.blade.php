@@ -9,11 +9,11 @@
 
     @endif
 
-    <h3>list of books:</h3>
+    <h3>list of authors:</h3>
     <ul>
-        @foreach ($books as $book)
+        @foreach ($authors as $author)
             <li>
-                <a href="/books/{{ $book->id }}">{{ $book->title }}</a>
+                <a href="/authors/{{ $author->id }}">{{ $author->name }}</a>
             </li>
         @endforeach
     </ul>
