@@ -9,9 +9,33 @@ class BookController extends Controller
 {
     public function index()
     {
-        $listOfBooks = Book::all();
+        $books = Book::all();
 
+        return view('books/index', compact('books'));
+    }
 
-        return $listOfBooks;
+    public function create()
+    {
+        return view('books/create');
+    }
+
+    public function store(Request $request)
+    {
+        $description = $request->input('description');
+
+        $book = new Book();
+        $book->title = $request->input('title');
+        $book->description = $description;
+        $book->save();
+
+        session()->flash('success_message', 'The book was successfully saved!');
+
+        return redirect()->action('App\Http\Controllers\BookController@index');
+    }
+
+    public function show($id)
+    {
+        $book = Book::find($id);
+        return $book;
     }
 }

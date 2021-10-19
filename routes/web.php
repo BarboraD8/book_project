@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/faq', 'App\Http\Controllers\FAQController@index');
 
 Route::get('/books', 'App\Http\Controllers\BookController@index');
+Route::get('/books/create', 'App\Http\Controllers\BookController@create');
+Route::post('/books', 'App\Http\Controllers\BookController@store');
+Route::get('/books/{id}', 'App\Http\Controllers\BookController@show');
