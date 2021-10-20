@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'App\Http\Controllers\CategoryController@index');
 Route::get('/faq', 'App\Http\Controllers\FAQController@index');
 
 Route::get('/books', 'App\Http\Controllers\BookController@index');
@@ -24,7 +21,11 @@ Route::get('/books/create', 'App\Http\Controllers\BookController@create');
 Route::post('/books', 'App\Http\Controllers\BookController@store');
 Route::get('/books/{id}', 'App\Http\Controllers\BookController@show');
 
+Route::delete('/books/{id}', 'App\Http\Controllers\BookController@delete');
+
 Route::get('/authors', 'App\Http\Controllers\AuthorController@index');
 Route::get('/authors/create', 'App\Http\Controllers\AuthorController@create');
 Route::post('/authors', 'App\Http\Controllers\AuthorController@store');
 Route::get('/authors/{id}', 'App\Http\Controllers\AuthorController@show');
+
+Route::get('/categories/{id}', 'App\Http\Controllers\CategoryController@show');
