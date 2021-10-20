@@ -26,6 +26,9 @@ class BookController extends Controller
         $book = new Book();
         $book->title = $request->input('title');
         $book->description = $description;
+        //@TODO set category id from form
+        $book->category_id = 1;
+
         $book->save();
 
         session()->flash('success_message', 'The book was successfully saved!');
@@ -44,6 +47,30 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $book->delete();
+
+        return redirect()->action('App\Http\Controllers\BookController@index');
+    }
+
+    public function edit($id)
+    {
+        $book = Book::findOrFail($id);
+
+        session()->flash('success_message', 'The book was successfully deleted!');
+
+        return view('books/edit', compact('book'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $book = Book::findOrFail($id);
+
+        $book->title = $request->input('title');
+        $book->description = $request->input('description');
+        //@TODO update category id from form
+
+        $book->save();
+
+        session()->flash('success_message', 'The book was successfully updated!');
 
         return redirect()->action('App\Http\Controllers\BookController@index');
     }

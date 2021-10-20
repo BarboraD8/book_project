@@ -20,7 +20,8 @@ Route::get('/books', 'App\Http\Controllers\BookController@index');
 Route::get('/books/create', 'App\Http\Controllers\BookController@create');
 Route::post('/books', 'App\Http\Controllers\BookController@store');
 Route::get('/books/{id}', 'App\Http\Controllers\BookController@show');
-
+Route::get('/books/{id}/edit', 'App\Http\Controllers\BookController@edit');
+Route::put('/books/{id}', 'App\Http\Controllers\BookController@update');
 Route::delete('/books/{id}', 'App\Http\Controllers\BookController@delete');
 
 Route::get('/authors', 'App\Http\Controllers\AuthorController@index');
