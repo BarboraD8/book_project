@@ -4,9 +4,19 @@
     <h3>Detail of book:</h3>
 
     <h2>{{ $book->title }}</h2>
-    <p>category: <a href="/categories/{{ $book->category->id }}">{{ $book->category->name }}</a></p>
+
+    <p>
+        author(s):
+        @foreach($book->authors as $author)
+            <a href="/authors/{{ $author->id }}">{{ $author->name }}</a>,
+        @endforeach
+    </p>
+    <p>
+        category:
+        <a href="/categories/{{ $book->category->id }}">{{ $book->category->name }}</a>
+    </p>
     <p>published at: {{ $book->publishedAt }}</p>
-    <p>description: {!! $book->description !!}</p>
+    <p>description: {{ $book->description }}</p>
     
     <img src="/images/{{ $book->image }}">
 

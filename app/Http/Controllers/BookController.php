@@ -25,13 +25,12 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
+        $book = new Book();
+
         $this->validateForm($request);
 
-        $description = $request->input('description');
-
-        $book = new Book();
         $book->title = $request->input('title');
-        $book->description = $description;
+        $book->description = $request->input('description');
         $book->category_id = $request->input('category_id');
 
         $book->save();
@@ -78,7 +77,7 @@ class BookController extends Controller
 
         session()->flash('success_message', 'The book was successfully updated!');
 
-        return redirect()->action('App\Http\Controllers\BookController@index');
+        return redirect()->action('App\Http\Controllers\BookController@show', ['id' => $book->id]);
     }
 
     private function validateForm($request)
