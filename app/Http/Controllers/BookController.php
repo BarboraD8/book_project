@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -16,18 +17,22 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('books/create');
+        $book = new Book();
+        $categories = Category::all();
+
+        return view('books/form', compact('categories', 'book'));
     }
 
     public function store(Request $request)
     {
+        $this->validateForm($request);
+
         $description = $request->input('description');
 
         $book = new Book();
         $book->title = $request->input('title');
         $book->description = $description;
-        //@TODO set category id from form
-        $book->category_id = 1;
+        $book->category_id = $request->input('category_id');
 
         $book->save();
 
@@ -54,24 +59,36 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Book::findOrFail($id);
+        $categories = Category::all();
 
-        session()->flash('success_message', 'The book was successfully deleted!');
-
-        return view('books/edit', compact('book'));
+        return view('books/form', compact('categories', 'book'));
     }
 
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
         $book = Book::findOrFail($id);
 
+        $this->validateForm($request);
+
         $book->title = $request->input('title');
         $book->description = $request->input('description');
-        //@TODO update category id from form
+        $book->category_id = $request->input('category_id');
 
         $book->save();
 
         session()->flash('success_message', 'The book was successfully updated!');
 
         return redirect()->action('App\Http\Controllers\BookController@index');
+    }
+
+    private function validateForm($request)
+    {
+        $this->validate($request, [
+            'title' => 'required|min:3',
+            'category_id' => 'required',
+        ], [
+            'title.required' => 'What?? the book does not have a title??',
+            'title.min' => 'Title should have at least 3 letters',
+        ]);
     }
 }
