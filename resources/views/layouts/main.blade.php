@@ -10,8 +10,10 @@
 </head>
 
 <body>
-    @include('common/errors')
-    @yield('content')
+    @include('common/header')
 
+    @include('common/errors')
+
+    @yield('content')
 </body>
 </html>

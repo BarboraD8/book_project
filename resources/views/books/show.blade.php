@@ -26,5 +26,6 @@
 
         <input type="submit" value="Delete"/>
     </form>
+    <a href="/books/{{ $book->id }}/edit">Edit</a>
 
 @endsection

@@ -6,7 +6,9 @@
     <p>all books:</p>
     <ul>
         @foreach($category->books as $book)
-            <li>{{ $book->title }}</li>
+            <li>
+                <a href="/books/{{ $book->id }}">{{ $book->title }}</a>
+            </li>
         @endforeach
     </ul>
 @endsection
