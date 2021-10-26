@@ -11,10 +11,10 @@
             <a href="/authors/{{ $author->id }}">{{ $author->name }}</a>,
         @endforeach
     </p>
-    <p>
-        category:
+{{--    <p>--}}
+{{--        category:--}}
 {{--        <a href="/categories/{{ $book->category->id }}">{{ $book->category->name }}</a>--}}
-    </p>
+{{--    </p>--}}
     <p>published at: {{ $book->publishedAt }}</p>
     <p>description: {{ $book->description }}</p>
     
@@ -27,5 +27,18 @@
         <input type="submit" value="Delete"/>
     </form>
     <a href="/books/{{ $book->id }}/edit">Edit</a>
+
+
+    <form
+            action="/books/{{ $book->id }}/review"
+            method="post"
+    >
+        @csrf
+        <textarea
+                name="text"
+                id="text"></textarea>
+        <input type="number" name="rating">
+        <input type="submit">
+    </form>
 
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts/main')
 
 @section('content')
-    <h3>Detail of Publisher:</h3>
+    <h1>Detail of Publisher:</h1>
 
     <h2>{{ $publisher->title }}</h2>
 

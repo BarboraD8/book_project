@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -90,5 +91,23 @@ class BookController extends Controller
             'title.required' => 'What?? the book does not have a title??',
             'title.min' => 'Title should have at least 3 letters',
         ]);
+    }
+
+    public function review($id, Request $request){
+
+//        $review = new Review;
+//        $review->book_id = $id;
+//        $review->text = $request->input('text');
+//        $review->rating = $request->input('rating');
+//        $review->save();
+
+        $data = $request->all();
+        $data['book_id'] = $id;
+
+        $review = Review::create($data);
+
+        return $review;
+
+
     }
 }

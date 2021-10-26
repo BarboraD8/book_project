@@ -9,7 +9,7 @@ class PublisherController extends Controller
 {
     public function index(){
         $publishers = Publisher::all();
-
+w
         return view('publishers.index', compact('publishers'));
     }
 

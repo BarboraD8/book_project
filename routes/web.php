@@ -23,6 +23,10 @@ Route::delete('/books/{id}', 'App\Http\Controllers\BookController@delete');
 Route::get('/books/{id}/edit', 'App\Http\Controllers\BookController@edit');
 Route::put('/books/{id}', 'App\Http\Controllers\BookController@update');
 
+
+Route::post('/books/{id}/review', 'App\Http\Controllers\BookController@review');
+
+
 Route::get('/authors', 'App\Http\Controllers\AuthorController@index');
 Route::get('/authors/create', 'App\Http\Controllers\AuthorController@create');
 Route::post('/authors', 'App\Http\Controllers\AuthorController@store');
