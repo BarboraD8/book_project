@@ -13,6 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        echo 'Hello from default DatabaseSeeder Class';
+
+        $this->call('Database\Seeders\UserSeeder');
+        $this->call('Database\Seeders\BookSeeder');
+
+
     }
 }

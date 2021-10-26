@@ -29,3 +29,6 @@ Route::post('/authors', 'App\Http\Controllers\AuthorController@store');
 Route::get('/authors/{id}', 'App\Http\Controllers\AuthorController@show');
 
 Route::get('/categories/{id}', 'App\Http\Controllers\CategoryController@show');
+
+Route::get('/publishers', 'App\Http\Controllers\PublisherController@index');
+Route::get('/publishers/{id}', 'App\Http\Controllers\PublisherController@show');

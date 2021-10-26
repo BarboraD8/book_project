@@ -13,7 +13,7 @@
     </p>
     <p>
         category:
-        <a href="/categories/{{ $book->category->id }}">{{ $book->category->name }}</a>
+{{--        <a href="/categories/{{ $book->category->id }}">{{ $book->category->name }}</a>--}}
     </p>
     <p>published at: {{ $book->publishedAt }}</p>
     <p>description: {{ $book->description }}</p>

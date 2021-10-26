@@ -18,4 +18,9 @@ class Book extends Model
     {
         return $this->belongsToMany('App\Models\Author');
     }
+
+    public function publisher(){
+        // Book belongs to Publisher
+        return $this->belongsTo('App\Models\Publisher');
+    }
 }
