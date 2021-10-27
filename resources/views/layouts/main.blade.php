@@ -12,6 +12,18 @@
 <body>
     @include('common/header')
 
+    <form action="{{ route('logout') }}" method="post">
+        @csrf
+        <button>Logout</button>
+    </form>
+
+    @if(Auth::check())
+        <h1>Hello, {{ Auth::user()->name }}</h1>
+        {{ Auth::id() }}
+    @else
+        <h2>I can greet you if you log in</h2>
+    @endif
+
     @include('common/errors')
 
     @yield('content')
