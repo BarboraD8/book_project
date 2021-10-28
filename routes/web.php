@@ -28,6 +28,8 @@ Route::put('/books/{id}', 'App\Http\Controllers\BookController@update');
 
 
 Route::post('/books/{id}/review', 'App\Http\Controllers\BookController@review');
+Route::delete('books/{id}/reviews/{review_id}', 'App\Http\Controllers\BookController@deleteReview')->middleware('can:admin');
+
 
 
 Route::get('/authors', 'App\Http\Controllers\AuthorController@index');

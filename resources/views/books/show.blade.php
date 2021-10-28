@@ -41,4 +41,20 @@
         <input type="submit">
     </form>
 
+
+    @foreach($book->reviews as $review)
+        <div>
+            <p>{{ $review->text }}</p>
+            <p>{{ $review->rating }}</p>
+
+            @can('admin')
+            <form action="/books/{{ $book->id }}/reviews/{{ $review->id }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button>Delete</button>
+            </form>
+            @endcan
+        </div>
+    @endforeach
+
 @endsection

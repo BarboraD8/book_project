@@ -110,4 +110,10 @@ class BookController extends Controller
 
 
     }
+
+    public function deleteReview($id, $review_id){
+        Review::findOrFail($review_id)->delete();
+        return redirect()->back();
+
+    }
 }
