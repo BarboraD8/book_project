@@ -29,32 +29,40 @@
     <a href="/books/{{ $book->id }}/edit">Edit</a>
 
 
-    <form
-            action="/books/{{ $book->id }}/review"
-            method="post"
-    >
-        @csrf
-        <textarea
-                name="text"
-                id="text"></textarea>
-        <input type="number" name="rating">
-        <input type="submit">
-    </form>
+    @if(Auth::check())
+        <form
+                action="/books/{{ $book->id }}/review"
+                method="post"
+        >
+            @csrf
+            <textarea
+                    name="text"
+                    id="text"></textarea>
+            <input type="number" name="rating">
+            <input type="submit">
+        </form>
+    @endif
+
+        @foreach($book->reviews as $review)
+            <div>
+                <p>{{ $review->text }}</p>
+                <p>{{ $review->rating }}</p>
+
+                @can('admin')
+
+                    <form
+                            action="/books/{{ $book->id }}/reviews/{{ $review->id }}"
+                            method="POST"
+                    >
+                        @csrf
+                        @method('DELETE')
+                        <button>Delete</button>
+                    </form>
+
+                @endcan
+            </div>
+        @endforeach
 
 
-    @foreach($book->reviews as $review)
-        <div>
-            <p>{{ $review->text }}</p>
-            <p>{{ $review->rating }}</p>
-
-            @can('admin')
-            <form action="/books/{{ $book->id }}/reviews/{{ $review->id }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button>Delete</button>
-            </form>
-            @endcan
-        </div>
-    @endforeach
 
 @endsection
