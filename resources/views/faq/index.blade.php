@@ -3,6 +3,14 @@
 @section('content')
     <h1>FAQ</h1>
 
+    @if(Gate::allows('admin'))
+    @else
+    @endif
+
+    @can('admin')
+    @elsecan
+    @endcan
+
     <div class="faqs">
         @foreach ($faqs as $faq)
             <div class="faqs__faq">

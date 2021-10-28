@@ -2,12 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class FAQController extends Controller
 {
     public function index()
     {
+        $user = User::where('id', 2)->first();
+
+//        dd($user->can('has_greater_id', 1));
+//
+//        dd($user->can('admin'));
+//
+//        return $user;
+//
+
+        if(Gate::allows('admin')){
+            return 'Hello, you are admin you should know this!';
+        }
+
+//        if(Auth::id() == 2 || Auth::id() == 3 || Auth::id() == 5){
+//            return 'Hello, you are admin you should know this!';
+//        }
+
+
         $faqs = [
             [
                 'Q' => 'How much is delivery?',

@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'App\Http\Controllers\CategoryController@index');
-Route::get('/faq', 'App\Http\Controllers\FAQController@index')->middleware('auth');
+
+Route::get('/faq', 'App\Http\Controllers\FAQController@index')
+    ->middleware('auth')
+    ->middleware('can:admin');
 
 Route::get('/books', 'App\Http\Controllers\BookController@index');
 Route::get('/books/create', 'App\Http\Controllers\BookController@create');

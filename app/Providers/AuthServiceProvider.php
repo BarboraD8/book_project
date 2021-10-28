@@ -25,6 +25,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('admin', function($user) {
+            return $user->id == 2 || $user->id == 3;
+        });
+
+        Gate::define('has_greater_id', function($user, $id) {
+            return $user->id > $id;
+        });
+
     }
 }
